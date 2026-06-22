@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="prs" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>سیستم حاضری شاگردان</title>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+  <div id="toast"></div>
+
+  <main id="loginView" class="center-screen">
+    <section class="auth-card">
+      <div class="brand">🎓 <span id="authTitle">سیستم حاضری شاگردان</span></div>
+      <p id="authText">برای ورود، ایمیل و رمز عبور را وارد کنید.</p>
+      <form id="loginForm">
+        <label id="emailLabel">ایمیل</label>
+        <input id="email" type="email" required placeholder="you@example.com" />
+        <label id="passwordLabel">رمز عبور</label>
+        <input id="password" type="password" required minlength="8" placeholder="••••••••" />
+        <button id="loginBtn" type="submit">ورود</button>
+      </form>
+      <button id="forgotBtn" class="link-btn">رمز عبور را فراموش کرده‌اید؟</button>
+      <button id="languageAuth" class="language">English</button>
+    </section>
+  </main>
+
+  <main id="appView" class="app hidden">
+    <aside class="sidebar">
+      <h1>🎓 <span data-i18n="appName">سیستم حاضری</span></h1>
+      <button class="nav active" data-page="dashboard" data-i18n="dashboard">داشبورد</button>
+      <button class="nav role-manager" data-page="students" data-i18n="students">شاگردان</button>
+      <button class="nav role-attendance" data-page="attendance" data-i18n="attendance">ثبت حاضری</button>
+      <button class="nav role-attendance" data-page="history" data-i18n="history">تاریخچه</button>
+      <button class="nav role-manager" data-page="reports" data-i18n="reports">راپورها</button>
+      <button class="nav role-superadmin" data-page="users" data-i18n="users">کاربران</button>
+      <button id="logoutBtn" class="logout" data-i18n="logout">خروج</button>
+    </aside>
+
+    <section class="content">
+      <header class="topbar">
+        <button id="menuBtn" class="mobile-menu">☰</button>
+        <div class="top-actions">
+          <button id="themeBtn">☾</button>
+          <button id="languageBtn">English</button>
+          <div id="profileBadge" class="profile-badge"></div>
+        </div>
+      </header>
+
+      <section id="dashboardPage" class="page"></section>
+      <section id="studentsPage" class="page hidden"></section>
+      <section id="attendancePage" class="page hidden"></section>
+      <section id="historyPage" class="page hidden"></section>
+      <section id="reportsPage" class="page hidden"></section>
+      <section id="usersPage" class="page hidden"></section>
+    </section>
+  </main>
+
+  <dialog id="studentDialog">
+    <form id="studentForm" method="dialog">
+      <div class="dialog-head">
+        <h2 id="studentDialogTitle">افزودن شاگرد</h2><button type="button" class="closeDialog">×</button>
+      </div>
+      <input type="hidden" id="studentUuid" />
+      <label data-i18n="studentId">شماره شاگرد</label>
+      <input id="studentId" required maxlength="50" />
+      <label data-i18n="fullName">نام مکمل</label>
+      <input id="studentName" required maxlength="150" />
+      <label data-i18n="enrollmentDate">تاریخ ثبت‌نام</label>
+      <input id="enrollmentDate" type="date" required />
+      <label data-i18n="status">وضعیت</label>
+      <select id="studentStatus">
+        <option value="active">فعال</option><option value="inactive">غیر فعال</option>
+        <option value="graduated">فارغ</option><option value="transferred">انتقال شده</option>
+      </select>
+      <label data-i18n="notes">یادداشت</label>
+      <textarea id="studentNotes" maxlength="500"></textarea>
+      <button id="studentSave" type="submit" data-i18n="save">ذخیره</button>
+    </form>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./assets/config.js"></script>
+  <script src="./assets/app.js"></script>
+</body>
+</html>
